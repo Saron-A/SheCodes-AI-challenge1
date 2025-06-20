@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+      const fetchAIApi = async () => {
+        const apiKey = "5704c3b4443b30c3afaa70c5fodbt64b";
+        const prompt = "Who was the first female president?";
+        const context = "Be clear and precise";
+
+        const response = await axios.get(
+          `https://api.shecodes.io/ai/v1/generate?prompt=${prompt}&context=${context}&key=${apiKey}`
+        );
+
+        let data = response.data;
+        console.log(data);
+        alert(data.answer);
+      };
+
+      fetchAIApi();
+    </script>
+  </body>
+</html>
