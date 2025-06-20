@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button>Tell me a joke</button>
+    <div class="display-joke"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+      let btn = document.querySelector("button");
+      let div = document.querySelector("div.display-joke");
+
+      const placeHolderText = () => {
+        div.innerHTML = "Generating a joke ...";
+        fetchAIJokes();
+      };
+
+      const fetchAIJokes = async () => {
+        const apiKey = "5704c3b4443b30c3afaa70c5fodbt64b";
+        const prompt = btn.textContent;
+        const context = "Be clear and precise";
+
+        let response = await axios.get(
+          `https://api.shecodes.io/ai/v1/generate?prompt=${prompt}&context=${context}&key=${apiKey}`
+        );
+        let data = response.data;
+        console.log(data);
+
+        div.innerHTML = data.answer;
+      };
+
+      //   fetchAIJokes();
+
+      btn.addEventListener("click", placeHolderText);
+    </script>
+  </body>
+</html>
